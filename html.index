@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10131b">
+<title>SquadLink Gaming</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #0b0e14;
+  color: white;
+}
+
+header {
+  background: #151a24;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #252b38;
+}
+
+.logo {
+  color: #ffb000;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 18px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #252b3c, #11141c);
+  padding: 25px;
+  border-radius: 18px;
+  margin-bottom: 20px;
+  border: 1px solid #343b4c;
+}
+
+.hero h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.hero p {
+  color: #aab2c2;
+  font-size: 14px;
+}
+
+.status {
+  color: #42e887;
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.card {
+  background: #151a24;
+  padding: 18px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #272e3b;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #202633;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 9px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: #ffb000;
+  color: #10131b;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.player-left {
+  display: flex;
+  align-items: center;
+}
+
+.online {
+  color: #43e98c;
+  font-size: 12px;
+}
+
+button {
+  background: #ffb000;
+  color: #10131b;
+  border: none;
+  padding: 13px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 8px;
+}
+
+button:active {
+  transform: scale(.98);
+}
+
+.secondary {
+  background: #293142;
+  color: white;
+}
+
+.red {
+  background: #ff4545;
+  color: white;
+}
+
+.green {
+  background: #28cc79;
+  color: #08130d;
+}
+
+input {
+  width: 100%;
+  padding: 13px;
+  background: #202633;
+  border: 1px solid #343b4c;
+  border-radius: 10px;
+  color: white;
+  margin: 7px 0;
+  outline: none;
+}
+
+.chat-box {
+  background: #0d1118;
+  padding: 12px;
+  height: 180px;
+  overflow-y: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.message {
+  margin-bottom: 9px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.message strong {
+  color: #ffb000;
+}
+
+.call-screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #10131b;
+  z-index: 10;
+  text-align: center;
+  padding: 50px 25px;
+}
+
+.call-avatar {
+  width: 110px;
+  height: 110px;
+  background: #ffb000;
+  color: black;
+  border-radius: 50%;
+  margin: 80px auto 20px;
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.call-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 45px;
+}
+
+.call-buttons button {
+  height: 55px;
+}
+
+footer {
+  text-align: center;
+  color: #727c8f;
+  padding: 25px;
+  font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">⚡ SQUADLINK</div>
+  <button style="width:auto;margin:0;padding:10px 15px"
+          onclick="notifyMe()">🔔</button>
+</header>
+
+<div class="container">
+
+  <section class="hero">
+    <h1>Find Your Squad 🎮</h1>
+    <p>Connect with teammates, organize gaming sessions and chat.</p>
+    <div class="status">● SquadLink online</div>
+  </section>
+
+  <section class="card">
+    <h2>👥 Squad Room</h2>
+
+    <div class="player">
+      <div class="player-left">
+        <div class="avatar">P1</div>
+        <div>
+          <strong>Player One</strong><br>
+          <span class="online">Online</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="player">
+      <div class="player-left">
+        <div class="avatar">P2</div>
+        <div>
+          <strong>Player Two</strong><br>
+          <span class="online">Available</span>
+        </div>
+      </div>
+      <button style="width:auto" onclick="startCall('Player Two')">
+        📞 Call
+      </button>
+    </div>
+
+    <div class="player">
+      <div class="player-left">
+        <div class="avatar">P3</div>
+        <div>
+          <strong>Player Three</strong><br>
+          <span class="online">Available</span>
+        </div>
+      </div>
+      <button style="width:auto" onclick="startCall('Player Three')">
+        📞 Call
+      </button>
+    </div>
+
+    <button onclick="createRoom()">➕ Create Squad Room</button>
+    <button class="secondary" onclick="joinRoom()">🔗 Join Squad Room</button>
+  </section>
+
+  <section class="card">
+    <h2>💬 Squad Chat</h2>
+
+    <div class="chat-box" id="chat">
+      <div class="message"><strong>System:</strong> Welcome to SquadLink!</div>
+    </div>
+
+    <input id="username" placeholder="Your nickname">
+    <input id="message" placeholder="Type a message...">
+
+    <button onclick="sendMessage()">Send Message</button>
+  </section>
+
+  <section class="card">
+    <h2>🔔 Notifications</h2>
+    <p style="color:#aab2c2;font-size:14px">
+      Enable browser notifications for squad invites and messages.
+    </p>
+    <button class="secondary" onclick="notifyMe()">
+      Enable Notifications
+    </button>
+  </section>
+
+</div>
+
+<footer>
+  SquadLink • Gaming Companion • Unofficial fan project
+</footer>
+
+<!-- Call interface -->
+<div class="call-screen" id="callScreen">
+
+  <div style="font-size:20px">📞 Squad Call</div>
+
+  <div class="call-avatar" id="callAvatar">P</div>
+
+  <h2 id="callName">Calling Player</h2>
+
+  <p id="callStatus" style="color:#aab2c2">
+    Call interface demo
+  </p>
+
+  <div class="call-buttons">
+    <button class="secondary" onclick="toggleMute()" id="muteBtn">
+      🎤 Mute
+    </button>
+
+    <button class="secondary" onclick="toggleSpeaker()">
+      🔊 Speaker
+    </button>
+
+    <button class="green" onclick="answerCall()">
+      ☎ Answer
+    </button>
+
+    <button class="red" onclick="endCall()">
+      ❌ End Call
+    </button>
+  </div>
+
+</div>
+
+<script>
+let currentPlayer = "";
+let muted = false;
+let speaker = false;
+
+function startCall(player) {
+  currentPlayer = player;
+
+  document.getElementById("callName").innerText = player;
+  document.getElementById("callAvatar").innerText =
+    player.charAt(0).toUpperCase();
+
+  document.getElementById("callStatus").innerText =
+    "Call demo — real voice connection not configured";
+
+  document.getElementById("callScreen").style.display = "block";
+}
+
+function answerCall() {
+  document.getElementById("callStatus").innerText =
+    "Demo call connected. Voice calling needs a server connection.";
+}
+
+function endCall() {
+  document.getElementById("callScreen").style.display = "none";
+  muted = false;
+  speaker = false;
+  document.getElementById("muteBtn").innerText = "🎤 Mute";
+}
+
+function toggleMute() {
+  muted = !muted;
+
+  document.getElementById("muteBtn").innerText =
+    muted ? "🔇 Unmute" : "🎤 Mute";
+
+  document.getElementById("callStatus").innerText =
+    muted ? "Microphone mute control demo" : "Call demo";
+}
+
+function toggleSpeaker() {
+  speaker = !speaker;
+
+  document.getElementById("callStatus").innerText =
+    speaker ? "Speaker control demo enabled" : "Speaker control demo disabled";
+}
+
+function createRoom() {
+  let room = Math.random().toString(36).substring(2, 8).toUpperCase();
+
+  alert("Your demo room code: " + room);
+}
+
+function joinRoom() {
+  let code = prompt("Enter squad room code:");
+
+  if (code) {
+    alert("Room code entered: " + code +
+      "\nMultiplayer rooms require a backend.");
+  }
+}
+
+function sendMessage() {
+  let name = document.getElementById("username").value.trim();
+  let msg = document.getElementById("message").value.trim();
+
+  if (!msg) return;
+
+  if (!name) name = "Player";
+
+  let chat = document.getElementById("chat");
+
+  let div = document.createElement("div");
+  div.className = "message";
+
+  let strong = document.createElement("strong");
+  strong.textContent = name + ": ";
+
+  div.appendChild(strong);
+  div.appendChild(document.createTextNode(msg));
+
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+
+  document.getElementById("message").value = "";
+}
+
+function notifyMe() {
+  if (!("Notification" in window)) {
+    alert("Notifications are not supported by this browser.");
+    return;
+  }
+
+  if (Notification.permission === "granted") {
+    new Notification("SquadLink", {
+      body: "Notifications are enabled! 🎮"
+    });
+  } else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(permission => {
+      if (permission === "granted") {
+        new Notification("SquadLink", {
+          body: "Notifications enabled! 🔔"
+        });
+      }
+    });
+  } else {
+    alert("Notifications are blocked in browser settings.");
+  }
+}
+</script>
+
+</body>
+</html>
